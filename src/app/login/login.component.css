@@ -1,0 +1,74 @@
+/* @import url('https://unpkg.com/bootstrap@3.3.7/dist/css/bootstrap.min.css'); */
+
+:host {
+    display: flex;
+    justify-content: center;
+    margin: 10% 37.5%;
+  }
+  .mat-form-field {
+    width: 100%;
+    min-width: 300px;
+  }
+  mat-card-title,
+  mat-card-content {
+    display: flex;
+    justify-content: center;
+  }
+  .error {
+    padding: 16px;
+    width: 300px;
+    color: white;
+    background-color: red;
+  }
+  .form-submit {
+    display: flex;
+    justify-content: flex-end;
+  }
+  .form-main{
+    background-color:#586068 ;
+    padding-top: 50px;
+  }
+  .form-title {
+    color: white;
+    font-size: 14px;    
+    margin-bottom: 15px;
+
+  }
+  .mat-icon {
+    font-size: 18px;
+  }
+  .block {
+    display: block;
+    width: 100%;
+    border: none;
+    background-color: #DB4912;
+    padding: 14px 28px;
+    border-radius: 8px 8px; 
+    color: white;
+    cursor: pointer;
+    text-align: center;
+  }
+  .login-form {
+    color: white;
+  }
+
+  .mat-focused .placeholder {
+    color: gray;
+  }
+
+  .disable-click {
+    pointer-events: none;
+    cursor: default; 
+    min-width: unset!important;
+  } 
+   
+  .mat-icon {
+    vertical-align: middle;
+  } 
+ 
+  .mat-stroked-button {
+    padding: 0 20%;
+  }
+  .formInput {
+    margin-left: 15px;
+  }

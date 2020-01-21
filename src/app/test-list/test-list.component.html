@@ -1,0 +1,18 @@
+<!-- The sidebar -->
+<div class="container">
+<a routerLink="/"><h1>Go Back</h1></a>
+
+<div id="mySidebar" class="sidebar">
+    <a href="javascript:void(0)" class="closebtn" (click)="closeNav()">&times;</a>
+    <a class="active" href="/">Home</a>
+    <a href="#news">News</a>
+    <a href="#contact">Contact</a>
+    <a href="#about">About</a>
+    <a href="/login">login</a>
+  </div>
+  
+  <!-- Page content -->
+  <div class="main">
+    <button class="openbtn" (click)="openNav()">&#9776; Open Sidebar</button>  
+  </div>
+</div>
