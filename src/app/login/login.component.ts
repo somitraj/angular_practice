@@ -24,7 +24,11 @@ export class LoginComponent implements OnInit {
    }
 
    onSubmit() {
+        if (this.loginForm.invalid) {
+          return;
+      }
       console.warn(this.loginForm.value);
+      alert("Username: " + this.loginForm.value['username']);
       // this.loginForm.reset();
     }
 }

@@ -1,0 +1,41 @@
+.displayContainer { 
+    margin-left: 30%;
+    margin-right: 30%;    
+    border: 1px solid blue;
+    text-align: center;
+}
+
+ 
+ .mat-table {
+   width: 100%; 
+  justify-content: center !important;
+  text-align: center
+ }
+
+.mat-table-sticky {
+  border-right: 1px solid #e0e0e0;
+}
+
+.mat-table-sticky:last-child { 
+  border-right: 1px solid #e0e0e0;
+}
+
+.mat-header-cell {
+  width: 30%;   
+  padding: 5% 0;  
+}
+
+
+.mat-sort-header-button {
+  text-align: center;
+  
+}
+/* 
+.mat-cell {    
+  padding: 5% 0;  
+}
+
+.mat-sort-header-container {
+  margin-left: 25%;
+}
+  */

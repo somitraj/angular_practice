@@ -1,25 +1,27 @@
 <mat-card class="form-main"> 
   <mat-card-title class="form-title"><b>Login to your account</b></mat-card-title> 
 <mat-card-content>
-<form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class = "login-form">
+<form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class = "login-form" ngNativeValidate >
   <mat-form-field> 
     <input type="text" matInput formControlName="username"  class="formInput"  id="username" name="username" required>
-    <mat-placeholder class="placeholder" style="padding-left: 5%;">Your DN Username</mat-placeholder>
+    <mat-placeholder class="placeholder">Your DN Username</mat-placeholder>
     <button matPrefix mat-stroked-button class="disable-click"> 
       <mat-icon>person</mat-icon>
     </button> 
+    <!-- <mat-error><strong>Username is required </strong> </mat-error>  -->
   </mat-form-field> 
 
   <mat-form-field>
     <input matInput [type]="hide ? 'password' : 'text'" formControlName="password" class="formInput" required>         
-    <mat-placeholder class="placeholder" style="padding-left: 5%;">Your Password</mat-placeholder>
+    <mat-placeholder class="placeholder">Your Password</mat-placeholder>
     <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
     <button matPrefix mat-stroked-button class="disable-click">
       <mat-icon>lock</mat-icon>
     </button> 
+    <!-- <mat-error><strong>Password is required </strong> </mat-error>  -->
   </mat-form-field> 
-
-  <mat-card-actions>
+  <mat-divider></mat-divider>
+  <mat-card-actions style="margin-top: 10px;  margin-bottom: 2px;">
     <!-- <button type="submit" [disabled]="!loginForm.valid" class="block"> -->
       <button type="submit"  class="block"> 
       <mat-icon>play_circle_outline</mat-icon> Sign In

@@ -10,8 +10,12 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import {MatSidenavModule} from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon';
 import { CommonModule } from '@angular/common';
-// import { MdCardModule, MdInputModule } from '@angular/material';
+import { HttpClientModule } from '@angular/common/http';
+import {MatTableModule} from '@angular/material/table';
+import {MatTabsModule} from '@angular/material/tabs';
 
+import { MatPaginatorModule, 
+         MatSortModule } from "@angular/material";
 
 import {
   MatButtonModule,
@@ -25,13 +29,15 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 import { LoginTestComponent } from './login-test/login-test.component';
+import { ViewDataComponent } from './view-data/view-data.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     TestListComponent,
     LoginComponent,
-    LoginTestComponent
+    LoginTestComponent,
+    ViewDataComponent
   ],
   imports: [
     BrowserModule,
@@ -49,7 +55,12 @@ import { LoginTestComponent } from './login-test/login-test.component';
     MatSidenavModule,
     CommonModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule,
+    MatTableModule,
+    MatTabsModule,
+    MatPaginatorModule, 
+    MatSortModule
   ],
   exports: [
     BrowserModule,
@@ -66,7 +77,12 @@ import { LoginTestComponent } from './login-test/login-test.component';
     MatSidenavModule,
     CommonModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule,
+    MatTableModule,
+    MatTabsModule,
+    MatPaginatorModule, 
+    MatSortModule
   ],
   providers: [],
   bootstrap: [AppComponent]

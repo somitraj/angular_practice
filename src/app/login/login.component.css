@@ -72,3 +72,8 @@
   .formInput {
     margin-left: 15px;
   }
+  
+  .placeholder {
+    color: white;
+    padding-left: 5%;
+  }
