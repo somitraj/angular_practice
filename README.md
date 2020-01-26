@@ -1,7 +1,8 @@
 
 
 ## Development server
-RUN 'npm run server' to start the server
+Run 'npm run server' to start the server 
+Then  
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
 ## Code scaffolding
