@@ -13,6 +13,7 @@ import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import {MatTableModule} from '@angular/material/table';
 import {MatTabsModule} from '@angular/material/tabs';
+import {MatDialogModule} from "@angular/material";
 
 import { MatPaginatorModule, 
          MatSortModule } from "@angular/material";
@@ -30,6 +31,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 import { LoginTestComponent } from './login-test/login-test.component';
 import { ViewDataComponent } from './view-data/view-data.component';
+import { EditDialogueComponent } from './edit-dialogue/edit-dialogue.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +39,8 @@ import { ViewDataComponent } from './view-data/view-data.component';
     TestListComponent,
     LoginComponent,
     LoginTestComponent,
-    ViewDataComponent
+    ViewDataComponent,
+    EditDialogueComponent
   ],
   imports: [
     BrowserModule,
@@ -60,7 +63,8 @@ import { ViewDataComponent } from './view-data/view-data.component';
     MatTableModule,
     MatTabsModule,
     MatPaginatorModule, 
-    MatSortModule
+    MatSortModule,
+    MatDialogModule
   ],
   exports: [
     BrowserModule,
@@ -82,7 +86,8 @@ import { ViewDataComponent } from './view-data/view-data.component';
     MatTableModule,
     MatTabsModule,
     MatPaginatorModule, 
-    MatSortModule
+    MatSortModule,
+    MatDialogModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -4,6 +4,7 @@ import { TestListComponent } from './test-list/test-list.component';
 import { LoginComponent } from './login/login.component';
 import { LoginTestComponent } from './login-test/login-test.component';
 import { ViewDataComponent } from './view-data/view-data.component';
+import { EditDialogueComponent } from './edit-dialogue/edit-dialogue.component';
 
 
 const routes: Routes = [
@@ -11,6 +12,7 @@ const routes: Routes = [
     {path : 'login', component: LoginComponent},
     {path : 'logintest', component: LoginTestComponent},
     {path : 'viewdata', component: ViewDataComponent},
+    {path : 'edit', component: EditDialogueComponent},
   ];
 
 @NgModule({
