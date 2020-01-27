@@ -45,14 +45,55 @@ export class ApiService {
     });
   }
 
-  public get(){   
-    // return this.httpClient.get(this.SERVER_URL, {  params: new HttpParams({fromString: "_page=1&_limit=20"}), observe: "response"}).pipe(retry(3), catchError(this.handleError), tap(res => {
-    //   // console.log(res.headers.get('Link'));
-    //   this.parseLinkHeader(res.headers.get('Link'));
-    // }));
-
+  public get() {   
     return this.httpClient.get(this.SERVER_URL).pipe(catchError(this.handleError));
   } 
   
+  httpOptions = {
+    headers: new HttpHeaders({
+      'Content-Type': 'application/json'
+    })
+  } 
+
+  updateData(newloginData): void {  
+    const url = `${this.SERVER_URL}/${newloginData.id}`;
+    
+    console.log(url); 
+    return
+    // return this.httpClient.put(url, JSON.stringify(newloginData), this.httpOptions).pipe(
+    //   alert();
+    //   // retry(1),
+    //   // catchError(this.handleError)
+    // );
+ 
+    // return this.httpClient.put(url, newloginData, this.httpOptions).pipe(
+    //   alert()
+    // );
+
+    
+    // this.httpClient.post(url, newloginData).subscribe(data => {
+    //   console.log(data);
+    //   // this.username = newloginData.username;
+    // });
+
+    
+  }
+  // public updateData(newloginData) {
+  //   console.log(newloginData);
+  //   // const url = `${this.apiurl}/${user.id}`;
+  //   // return this.http.put<User>(this.apiurl, user, this.httpOptions).pipe(
+  //   //   map(() => user),
+  //   //   catchError(this.handleError)
+  //   // );
+  // }
+ 
+
+  deleteData (id: string) {     
+    const url = `${this.SERVER_URL}/${id}/`;
+    
+    return this.httpClient.delete(url).pipe(
+      catchError(this.handleError)
+    ); 
+  }
   
 }
