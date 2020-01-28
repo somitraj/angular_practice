@@ -7,8 +7,9 @@ for (var i = 1; i<= 300; i++) {
     id: i,
     username: faker.internet.userName(),
     // description: faker.lorem.sentences(),
-    password: faker.internet.password() 
-    // imageUrl: "https://source.unsplash.com/1600x900/?product" 
+    password: faker.internet.password(),
+    DOB: faker.date.past()  
+    // DOB: faker.date(pattern='%Y-%m-%d', end_datetime=None)
   });
 }
 
