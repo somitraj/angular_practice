@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Observable, of, throwError } from 'rxjs';
-import { HttpClient, HttpHeaders, HttpErrorResponse, HttpParams } from '@angular/common/http';
-import { retry,catchError, tap, map } from 'rxjs/operators'; 
+import { HttpClient, HttpHeaders, HttpErrorResponse, HttpParams, HttpResponse } from '@angular/common/http';
+import { retry,catchError, tap, map, takeUntil } from 'rxjs/operators'; 
+import { get } from 'http';
 
 @Injectable({
   providedIn: 'root'
@@ -12,8 +13,7 @@ export class ApiService {
   public next: string = "";  
   public last: string = "";
 
-  private SERVER_URL = "http://localhost:3000/login";
-
+  private SERVER_URL = "http://localhost:3000/login"; 
   constructor(private httpClient: HttpClient) { }
 
   handleError(error: HttpErrorResponse) {
@@ -45,48 +45,33 @@ export class ApiService {
     });
   }
 
-  public get() {   
-    return this.httpClient.get(this.SERVER_URL).pipe(catchError(this.handleError));
+  public get() : Observable<login>{  
+    return this.httpClient.get<login>(this.SERVER_URL).pipe(catchError(this.handleError));
   } 
   
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json'
     })
+  }  
+  updateData(newloginData): Observable<login> {  
+    const url = `${this.SERVER_URL}/${newloginData.id}`;  
+
+    this.httpClient.put(url,
+      {
+        "username": newloginData.username,
+        "password": newloginData.password,
+        "DOB": newloginData.DOB
+      })
+      .subscribe(
+        result => {
+                     1;
+                  },
+        error  => {
+          console.log("Error", error);
+        }
+      );      
   } 
-
-  updateData(newloginData): void {  
-    const url = `${this.SERVER_URL}/${newloginData.id}`;
-    
-    console.log(url); 
-    return
-    // return this.httpClient.put(url, JSON.stringify(newloginData), this.httpOptions).pipe(
-    //   alert();
-    //   // retry(1),
-    //   // catchError(this.handleError)
-    // );
- 
-    // return this.httpClient.put(url, newloginData, this.httpOptions).pipe(
-    //   alert()
-    // );
-
-    
-    // this.httpClient.post(url, newloginData).subscribe(data => {
-    //   console.log(data);
-    //   // this.username = newloginData.username;
-    // });
-
-    
-  }
-  // public updateData(newloginData) {
-  //   console.log(newloginData);
-  //   // const url = `${this.apiurl}/${user.id}`;
-  //   // return this.http.put<User>(this.apiurl, user, this.httpOptions).pipe(
-  //   //   map(() => user),
-  //   //   catchError(this.handleError)
-  //   // );
-  // }
- 
 
   deleteData (id: string) {     
     const url = `${this.SERVER_URL}/${id}/`;

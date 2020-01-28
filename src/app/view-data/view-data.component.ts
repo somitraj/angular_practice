@@ -6,6 +6,7 @@ import { MatDialog, MatDialogRef } from '@angular/material';
 import { EditDialogueComponent } from '../edit-dialogue/edit-dialogue.component';
 import {ExcelService} from '../excel.service'; 
 import { DatePipe } from '@angular/common';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-view-data',
@@ -19,7 +20,7 @@ export class ViewDataComponent implements OnInit {
   @ViewChild(MatSort, {static: true}) sort: MatSort;
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;  
 
-  constructor(private apiService: ApiService,public dialog: MatDialog,private excelService:ExcelService,private datePipe: DatePipe) { }
+  constructor(private apiService: ApiService,public dialog: MatDialog,private excelService:ExcelService,private datePipe: DatePipe,private router: Router) { }
 
   displayedColumns: string[] = ['id', 'username', 'password', 'DOB', 'edit', 'delete'];  
   loginData = new MatTableDataSource();
@@ -47,7 +48,7 @@ export class ViewDataComponent implements OnInit {
   }
 
   public loadData() {
-    this.apiService.get().subscribe((data: any[]) =>{   
+    this.apiService.get().subscribe((data: login[]) =>{    
       if(!data){
         return;
       }
@@ -58,29 +59,26 @@ export class ViewDataComponent implements OnInit {
     })    
   } 
   
-  public redirectToUpdate = (i: string, id: string, username: string, password: string) => {     
+  public redirectToUpdate = (i: string, id: string, username: string, password: string, DOB: string) => {   
+    DOB = this.datePipe.transform(DOB,"yyyy-MM-dd"); 
     let serverDialogRef = this.dialog.open(EditDialogueComponent, {
       width: '250px',
-      data: {id: id, username: username, password: password}
+      data: {id: id, username: username, password: password, DOB: DOB}
     });
-  }
 
-  // dialogRef.afterClosed().subscribe(result => {
-  //   if (result === 1) {
-  //     // When using an edit things are little different, firstly we find record inside DataService by id
-  //     const foundIndex = this.exampleDatabase.dataChange.value.findIndex(x => x.id === this.id);
-  //     // Then you update that record using data from dialogData (values you enetered)
-  //     this.exampleDatabase.dataChange.value[foundIndex] = this.dataService.getDialogData();
-  //     // And lastly refresh table
-  //     this.refreshTable();
-  //   }
-  // }); 
+    serverDialogRef.afterClosed().subscribe((result) => {  
+      console.log(result);
+      if (result === 1) {          
+        this.loadData()
+      }
+    });
+  } 
 
  
   public redirectToDelete = (id: string, username: string) => {  
 
     if(confirm("Are you sure to delete user '" + username + "'")) {
-      this.apiService.deleteData(id).subscribe((data: any[]) => {
+      this.apiService.deleteData(id).subscribe((data: login[]) => {
         this.loadData(); 
       });  
     }    

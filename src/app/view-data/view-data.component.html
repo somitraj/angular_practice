@@ -56,7 +56,7 @@
         <ng-container matColumnDef="edit">
             <th mat-header-cell *matHeaderCellDef mat-sort-header> Edit </th>
             <td mat-cell *matCellDef="let login; let i=index">
-                <button mat-icon-button color="accent" (click)="redirectToUpdate(i, login.id, login.username, login.password)">
+                <button mat-icon-button color="accent" (click)="redirectToUpdate(i, login.id, login.username, login.password, login.DOB)">
                     <mat-icon class="mat-18">system_update</mat-icon>
                 </button>
               </td>
