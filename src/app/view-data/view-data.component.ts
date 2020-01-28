@@ -4,7 +4,8 @@ import { HttpResponse } from '@angular/common/http';
 import {MatPaginator, MatSort, MatTableDataSource} from '@angular/material';
 import { MatDialog, MatDialogRef } from '@angular/material';
 import { EditDialogueComponent } from '../edit-dialogue/edit-dialogue.component';
-
+import {ExcelService} from '../excel.service'; 
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-view-data',
@@ -12,12 +13,15 @@ import { EditDialogueComponent } from '../edit-dialogue/edit-dialogue.component'
   styleUrls: ['./view-data.component.css']
 })
 
-export class ViewDataComponent implements OnInit {
+export class ViewDataComponent implements OnInit { 
+
+
   @ViewChild(MatSort, {static: true}) sort: MatSort;
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;  
-  constructor(private apiService: ApiService,public dialog: MatDialog) { }
 
-  displayedColumns: string[] = ['id', 'username', 'password', 'edit', 'delete'];  
+  constructor(private apiService: ApiService,public dialog: MatDialog,private excelService:ExcelService,private datePipe: DatePipe) { }
+
+  displayedColumns: string[] = ['id', 'username', 'password', 'DOB', 'edit', 'delete'];  
   loginData = new MatTableDataSource();
 
   applyFilter(filterValue: string) {
@@ -26,6 +30,20 @@ export class ViewDataComponent implements OnInit {
 
 	ngOnInit() {
 		this.loadData();
+  }
+
+  exportAsXLSX():void {  
+    this.apiService.get().subscribe((excelData: any[]) =>{   
+      if(!excelData){
+        return;
+      }      
+      
+      for (let data of excelData) {
+        data.DOB = this.datePipe.transform(data.DOB,"MM-dd-yyyy");
+      }
+      
+      this.excelService.exportAsExcelFile(excelData, 'sample');  
+    })      
   }
 
   public loadData() {
@@ -45,11 +63,6 @@ export class ViewDataComponent implements OnInit {
       width: '250px',
       data: {id: id, username: username, password: password}
     });
-    // const dialogRef = this.dialog.open(EditDialogueComponent, {
-    //   data: {id: id, username: username, password: password}
-    // });
-
-
   }
 
   // dialogRef.afterClosed().subscribe(result => {

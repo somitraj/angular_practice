@@ -14,6 +14,7 @@ import { HttpClientModule } from '@angular/common/http';
 import {MatTableModule} from '@angular/material/table';
 import {MatTabsModule} from '@angular/material/tabs';
 import {MatDialogModule} from "@angular/material";
+import {DatePipe} from '@angular/common';
 
 import { MatPaginatorModule, 
          MatSortModule } from "@angular/material";
@@ -89,7 +90,7 @@ import { EditDialogueComponent } from './edit-dialogue/edit-dialogue.component';
     MatSortModule,
     MatDialogModule
   ],
-  providers: [],
+  providers: [DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
