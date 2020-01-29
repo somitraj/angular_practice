@@ -42,17 +42,17 @@ export class ViewDataComponent implements OnInit {
       for (let data of excelData) {
         data.DOB = this.datePipe.transform(data.DOB,"MM-dd-yyyy");
       }
-      
+      // console.log(excelData);
       this.excelService.exportAsExcelFile(excelData, 'sample');  
     })      
   }
 
   public loadData() {
-    this.apiService.get().subscribe((data: login[]) =>{    
+    this.apiService.get().subscribe((data: any[]) =>{    
       if(!data){
         return;
       }
-      // console.log(data)
+      console.log(data)
       this.loginData= new MatTableDataSource(data);
       this.loginData.paginator=this.paginator; 
       this.loginData.sort=this.sort;       
@@ -68,8 +68,9 @@ export class ViewDataComponent implements OnInit {
 
     serverDialogRef.afterClosed().subscribe((result) => {  
       console.log(result);
-      if (result === 1) {          
-        this.loadData()
+      if (result === 1) {       
+        // this.loadData()   
+        window.location.reload();
       }
     });
   } 
@@ -78,7 +79,7 @@ export class ViewDataComponent implements OnInit {
   public redirectToDelete = (id: string, username: string) => {  
 
     if(confirm("Are you sure to delete user '" + username + "'")) {
-      this.apiService.deleteData(id).subscribe((data: login[]) => {
+      this.apiService.deleteData(id).subscribe((data: any[]) => {
         this.loadData(); 
       });  
     }    

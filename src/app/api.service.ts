@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable, of, throwError } from 'rxjs';
 import { HttpClient, HttpHeaders, HttpErrorResponse, HttpParams, HttpResponse } from '@angular/common/http';
 import { retry,catchError, tap, map, takeUntil } from 'rxjs/operators'; 
-import { get } from 'http';
+// import { get } from 'http';
 
 @Injectable({
   providedIn: 'root'
@@ -45,8 +45,8 @@ export class ApiService {
     });
   }
 
-  public get() : Observable<login>{  
-    return this.httpClient.get<login>(this.SERVER_URL).pipe(catchError(this.handleError));
+  public get() {  
+    return this.httpClient.get(this.SERVER_URL).pipe(catchError(this.handleError));
   } 
   
   httpOptions = {
@@ -54,7 +54,7 @@ export class ApiService {
       'Content-Type': 'application/json'
     })
   }  
-  updateData(newloginData): Observable<login> {  
+  updateData(newloginData): void {  
     const url = `${this.SERVER_URL}/${newloginData.id}`;  
 
     this.httpClient.put(url,
