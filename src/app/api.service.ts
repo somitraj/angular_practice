@@ -45,7 +45,7 @@ export class ApiService {
     });
   }
 
-  public get() {  
+  public getUserData() {  
     return this.httpClient.get(this.SERVER_URL).pipe(catchError(this.handleError));
   } 
   
