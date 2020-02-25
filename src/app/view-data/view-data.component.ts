@@ -8,6 +8,13 @@ import {ExcelService} from '../excel.service';
 import { DatePipe } from '@angular/common';
 import { Router } from '@angular/router';
 
+export class UserData {
+  id: number;
+  username: string;
+  password: string;
+  DOB: string; 
+}
+
 @Component({
   selector: 'app-view-data',
   templateUrl: './view-data.component.html',
@@ -34,7 +41,7 @@ export class ViewDataComponent implements OnInit {
   }
 
   exportAsXLSX():void {  
-    this.apiService.get().subscribe((excelData: any[]) =>{   
+    this.apiService.getUserData().subscribe((excelData: any[]) =>{   
       if(!excelData){
         return;
       }      
@@ -48,7 +55,7 @@ export class ViewDataComponent implements OnInit {
   }
 
   public loadData() {
-    this.apiService.get().subscribe((data: any[]) =>{    
+    let subscription = this.apiService.getUserData().subscribe((data: any[]) =>{    
       if(!data){
         return;
       }
@@ -68,9 +75,11 @@ export class ViewDataComponent implements OnInit {
 
     serverDialogRef.afterClosed().subscribe((result) => {  
       console.log(result);
-      if (result === 1) {       
-        // this.loadData()   
-        window.location.reload();
+      if (result === 1) {   
+        setTimeout(()=>{     
+        this.loadData()   
+        // window.location.reload();
+        }, 300);
       }
     });
   } 
